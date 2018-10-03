@@ -32,7 +32,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
     <title>
-      ezNote
+      Talk to me!
     </title>
     <link href="//" rel="icon" type="image/ico">
 
@@ -53,7 +53,7 @@
           padding: 15px;
           text-align: left;
           min-height: 150px;
-          width: 90%;
+          width: 65%;
           margin: 0 auto 0 auto;
           }
           #start_button {
@@ -159,11 +159,12 @@
       <div class="compact marquee-stacked" id="marquee">
         <div class="container-fluid">
           <h1>
-            Rand(4) Project
+            Speech to Text Thing
           </h1>
         </div>
       </div>
-      <div class="compact marquee">
+
+      <div class="container-fluid">
         <div id="info" class="container-fluid">
           <p id="info_start">
             Go on, say something already!
@@ -198,13 +199,17 @@
         </div>
         <br />
         <div id="div_start" style="float: left;">
-          <button id="start_button" onclick="startButton(event)"><img alt="Start" id="start_img"
-          src="/img/mic.gif"></button>
+          <button id="start_button" style="float: left;" onclick="startButton(event)">
+            <img alt="Start" id="start_img" src="/img/mic.gif"></button>
         </div>
-        <div id="results" class="speech-bubble">
+
+        <div id="results" style="float: left;" class="speech-bubble">
           <span class="final" id="final_span"></span>
         </div>
-        <div class="container-fluid mt-3">
+      </div>
+
+      <div class="container-fluid" style="display: inline-block; padding-top: 35px;">
+        <div class="container-fluid mt-3" style="width: 100%;">
           <p>
             <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
               Interim Transcript
@@ -212,15 +217,11 @@
           </p>
         </div>
 
-
-
         <div class="collapse" id="collapseExample">
           <div class="card card-body">
             <span class="interim" id="interim_span"></span>
           </div>
         </div>
-
-
 
         <div id="copy" class="container-fluid">
           <button class="btn btn-info" id="copy_button" onclick="copyButton()">Copy this crap</button>
@@ -417,8 +418,8 @@ if (!('webkitSpeechRecognition' in window)) {
     text = text.split(" ");
     for (var i = 0; i < text.length; i++) {
       if ( typeof random[i] === 'undefined' ) {
-        var dice = Math.floor(Math.random() * 3) + 1;
-        if ( dice >= 2 ) {
+        var dice = Math.floor(Math.random() * 8) + 1;
+        if ( dice <= 3 ) {
           text[i] += "<br>";
           random[i] = 0;
         } else {
