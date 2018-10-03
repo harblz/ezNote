@@ -23,75 +23,148 @@
     <meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
     <title>
       ezNote
     </title>
     <link href="//" rel="icon" type="image/ico">
 
     <style>
-#info {
-    font-size: 20px;
-    }
-    #div_start {
-    float: right;
-    }
-    #headline {
-    text-decoration: none
-    }
-    #results {
-    font-size: 14px;
-    font-weight: bold;
-    border: 1px solid #ddd;
-    padding: 15px;
-    text-align: left;
-    min-height: 150px;
-    }
-    #start_button {
-    border: 0;
-    background-color:transparent;
-    padding: 0;
-    }
-    .interim {
-    color: gray;
-    }
-    .final {
-    color: black;
-    padding-right: 3px;
-    }
-    .button {
-    display: none;
-    }
-    .marquee {
-    margin: 20px auto;
-    }
+      #info {
+          font-size: 20px;
+          }
+          #div_start {
+          float: right;
+          }
+          #headline {
+          text-decoration: none
+          }
+          #results {
+          font-size: 14px;
+          font-weight: bold;
+          border: 1px solid #ddd;
+          padding: 15px;
+          text-align: left;
+          min-height: 150px;
+          width: 90%;
+          margin: 0 auto 0 auto;
+          }
+          #start_button {
+          border: 0;
+          background-color:transparent;
+          padding: 0;
+          }
+          .interim {
+          color: gray;
+          }
+          .final {
+          color: black;
+          padding-right: 3px;
+          }
+          .button {
+          display: none;
+          }
+          .marquee {
+          margin: 20px auto;
+          }
 
-    #buttons {
-    margin: 10px 0;
-    position: relative;
-    top: -50px;
-    }
+          #buttons {
+          margin: 10px 0;
+          position: relative;
+          top: -50px;
+          }
 
-    #copy {
-    margin-top: 20px;
-    }
+          #copy {
+          margin-top: 20px;
+          }
 
-    #copy > div {
-    display: none;
-    margin: 0 70px;
-    }
-    </style>
+          #copy > div {
+          display: none;
+          margin: 0 70px;
+          }
+
+          .speech-bubble {
+            position: relative;
+            background: #00aabb;
+            border-radius: .4em;
+          }
+
+          .speech-bubble:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 0;
+            height: 0;
+            border: 20px solid transparent;
+            border-right-color: #00aabb;
+            border-left: 0;
+            border-bottom: 0;
+            margin-top: -10px;
+            margin-left: -20px;
+          }
+
+          .speech-bubble2 {
+            position: relative;
+            background: #00ff80;
+            border-radius: .4em;
+          }
+
+          .speech-bubble2:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 0;
+            height: 0;
+            border: 20px solid transparent;
+            border-right-color: #00ff80;
+            border-left: 0;
+            border-bottom: 0;
+            margin-top: -10px;
+            margin-left: -20px;
+          }
+
+          .speech-bubble3 {
+            position: relative;
+            background: #00ff80;
+            border-radius: .4em;
+          }
+
+          .speech-bubble3:after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            width: 0;
+            height: 0;
+            border: 20px solid transparent;
+            border-left-color: #00ff80;
+            border-right: 0;
+            border-bottom: 0;
+            margin-top: -10px;
+            margin-right: -20px;
+          }
+      </style>
   </head>
   <body class="" id="grid">
     <div class="browser-landing" id="main">
       <div class="compact marquee-stacked" id="marquee">
-        <div>
+        <div class="container-fluid">
           <h1>
-            EZ Note Demonstration
+            Rand(4) Project
           </h1>
         </div>
       </div>
       <div class="compact marquee">
-        <div id="info">
+        <div id="info" class="container-fluid">
           <p id="info_start">
             Go on, say something already!
           </p>
@@ -123,37 +196,50 @@
             "//www.google.com/chrome">Chrome</a> version 25 or later.
           </p>
         </div>
-        <div id="div_start">
+        <br />
+        <div id="div_start" style="float: left;">
           <button id="start_button" onclick="startButton(event)"><img alt="Start" id="start_img"
           src="/img/mic.gif"></button>
         </div>
-        <div id="results">
-          <span class="final" id="final_span"></span> <span class="interim" id=
-          "interim_span"></span>
+        <div id="results" class="speech-bubble">
+          <span class="final" id="final_span"></span>
         </div>
-        <div id="copy">
-          <button class="button" id="copy_button" onclick="copyButton()">Copy and Paste</button>
-          <div id="copy_info">
+        <div class="container-fluid mt-3">
+          <p>
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+              Interim Transcript
+            </button>
+          </p>
+        </div>
+
+
+
+        <div class="collapse" id="collapseExample">
+          <div class="card card-body">
+            <span class="interim" id="interim_span"></span>
+          </div>
+        </div>
+
+
+
+        <div id="copy" class="container-fluid">
+          <button class="btn btn-info" id="copy_button" onclick="copyButton()">Copy this crap</button>
+          <div class="speech-bubble2" style="padding: 15px;font-weight: bold; color: white;" id="copy_info">
             <p>
-              Press Control-C to copy text.
+              Done! Hope it was worth it.
             </p>
+          </div>
+
+          <button class="btn btn-success" id="email_button" onclick="emailButton()">Email this crap to someone</button>
+          <div class="speech-bubble2" style="padding: 15px;font-weight: bold; color: white;" id="email_info">
             <p>
-              (Command-C on Mac.)
-            </p>
-          </div><button class="button" id="email_button" onclick="emailButton()">Create
-          Email</button>
-          <div id="email_info">
-            <p>
-              Text sent to default email application.
-            </p>
-            <p>
-              (See chrome://settings/handlers to change.)
+              Done! Hope it was worth it.
             </p>
           </div>
         </div>
-        <div class="compact marquee" id="div_language">
-          <select id="select_language" onchange="updateCountry()">
-            </select>&nbsp;&nbsp; <select id="select_dialect">
+        <div class="compact marquee container-fluid" id="div_language">
+          <select id="select_language" class="btn btn-secondary" onchange="updateCountry()">
+            </select>&nbsp;&nbsp; <select class="btn btn-secondary" id="select_dialect">
             </select>
         </div>
       </div>
@@ -239,6 +325,15 @@ updateCountry();
 select_dialect.selectedIndex = 6;
 showInfo('info_start');
 
+
+function WordCount(str) { 
+  return str.split(" ").length;
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
 function updateCountry() {
   for (var i = select_dialect.options.length - 1; i >= 0; i--) {
     select_dialect.remove(i);
@@ -313,6 +408,38 @@ if (!('webkitSpeechRecognition' in window)) {
     }
   };
 
+  var state = false;
+
+  var random = [0];
+
+  function chunk(state) {
+    var text = interim_span.innerHTML;
+    text = text.split(" ");
+    for (var i = 0; i < text.length; i++) {
+      if ( typeof random[i] === 'undefined' ) {
+        var dice = Math.floor(Math.random() * 3) + 1;
+        if ( dice >= 2 ) {
+          text[i] += "<br>";
+          random[i] = 0;
+        } else {
+          random[i] = 1;
+        }
+      } else {
+        if ( random[i] == 0 ) {
+          text[i] += "<br>";
+        } else {
+          // do nothing
+        }
+      }
+    }
+    text = text.join(" ");
+    if ( state = 'final') {
+      final_span.innerHTML = text;
+    } else {
+      interim_span.innerHTML = text;
+    }
+  }
+
   recognition.onresult = function(event) {
     var interim_transcript = '';
     if (typeof(event.results) == 'undefined') {
@@ -345,12 +472,20 @@ function upgrade() {
 var two_line = /\n\n/g;
 var one_line = /\n/g;
 function linebreak(s) {
+  chunk('interim');
   return s.replace(two_line, '<p></p>').replace(one_line, '<br>');
 }
 
 var first_char = /\S/;
 function capitalize(s) {
   return s.replace(first_char, function(m) { return m.toUpperCase(); });
+}
+
+function strip(html)
+{
+   var tmp = document.createElement("DIV");
+   tmp.innerHTML = html;
+   return tmp.textContent || tmp.innerText || "";
 }
 
 function createEmail() {
@@ -368,8 +503,14 @@ function copyButton() {
     recognizing = false;
     recognition.stop();
   }
-  copy_button.style.display = 'none';
+  const el = document.createElement('textarea');
+  el.value = strip(final_span.innerHTML);
+  document.body.appendChild(el);
+  el.select();
+  document.execCommand('copy');
+  document.body.removeChild(el);
   copy_info.style.display = 'inline-block';
+  setTimeout(function(){ copy_info.style.display = 'none'; }, 3000);
   showInfo('');
 }
 
@@ -383,6 +524,7 @@ function emailButton() {
   }
   email_button.style.display = 'inline-block';
   email_info.style.display = 'inline-block';
+  setTimeout(function(){ email_info.style.display = 'none'; }, 3000);
   showInfo('');
 }
 

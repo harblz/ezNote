@@ -11,8 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'newNoteController@newNote');
 
 Route::get('/note', 'newNoteController@newNote');
