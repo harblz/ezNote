@@ -228,6 +228,9 @@
 
         <div id="copy" class="container-fluid">
           
+
+            <button class="btn btn-info" id="copy_button" onclick="newTab()"><i class="fas fa-plus-circle"></i></button>
+
             <button class="btn btn-info" id="copy_button" onclick="copyButton()">Copy</button>
             <div class="speech-bubble2" style="padding: 15px;font-weight: bold; color: white;" id="copy_info">
               <p>
@@ -424,11 +427,12 @@ if (!('webkitSpeechRecognition' in window)) {
 
   var random = [0];
 
+  /*
   setTimeout(function(){
     interim_span.innerHTML = 'Testing 1 2 3 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
     chunk(state); 
   }, 1500);
-
+  */
 
   function chunk(state) {
     var text = interim_span.innerHTML;
@@ -515,6 +519,10 @@ function createEmail() {
   var subject = encodeURI(final_transcript.substring(0, n));
   var body = encodeURI(final_transcript.substring(n + 1));
   window.location.href = 'mailto:?subject=' + subject + '&body=' + body;
+}
+
+function newTab() {
+
 }
 
 function copyButton() {
