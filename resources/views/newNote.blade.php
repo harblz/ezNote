@@ -167,7 +167,16 @@
         </div>
       </div>
 
+
       <div class="container-fluid">
+        <br />
+
+        <ul class="nav nav-tabs" id="tabs" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="tab-1" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Transcript #1</a>
+          </li>
+        </ul>
+
         <div id="info" class="container-fluid">
           <p id="info_start">
             Go on, say something already!
@@ -200,13 +209,20 @@
             "//www.google.com/chrome">Chrome</a> version 25 or later.
           </p>
         </div>
+
         <br />
+
         <div id="div_start" style="float: left;">
           <button id="start_button" style="float: left;" onclick="startButton(event)">
             <img alt="Start" id="start_img" src="/img/mic.gif"></button>
         </div>
 
+
         <div id="results" style="float: left;" class="speech-bubble">
+          <div class="tab-content" id="tab-content">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">...</div>
+          </div>
+
           <span class="final" id="final_span"></span>
         </div>
       </div>
@@ -427,12 +443,14 @@ if (!('webkitSpeechRecognition' in window)) {
 
   var random = [0];
 
-  /*
-  setTimeout(function(){
-    interim_span.innerHTML = 'Testing 1 2 3 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
-    chunk(state); 
-  }, 1500);
-  */
+  function test() {
+    setTimeout(function(){
+      interim_span.innerHTML = 'Testing 1 2 3 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
+      chunk('final'); 
+    }, 1500);
+  }
+
+  
 
   function chunk(state) {
     var text = interim_span.innerHTML;
@@ -474,6 +492,7 @@ if (!('webkitSpeechRecognition' in window)) {
     for (var i = event.resultIndex; i < event.results.length; ++i) {
       if (event.results[i].isFinal) {
         final_transcript += event.results[i][0].transcript;
+        chunk('final');
       } else {
         interim_transcript += event.results[i][0].transcript;
       }
@@ -495,7 +514,6 @@ function upgrade() {
 var two_line = /\n\n/g;
 var one_line = /\n/g;
 function linebreak(s) {
-  chunk('interim');
   return s.replace(two_line, '<p></p>').replace(one_line, '<br>');
 }
 
@@ -522,7 +540,9 @@ function createEmail() {
 }
 
 function newTab() {
-
+  var number = $('#tabs li').length;
+  number += 1;
+  $('#tabs').append(`<li class="nav-item"> <a class="nav-link active" id="tab-`+number+`" data-toggle="tab" href="#`+number+`" role="tab" aria-controls="`+number+`" aria-selected="true">Transcript #`+number+`</a> </li>`);
 }
 
 function copyButton() {
