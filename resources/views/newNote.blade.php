@@ -31,6 +31,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+
     <title>
       Talk to me!
     </title>
@@ -47,13 +50,13 @@
           text-decoration: none
           }
           #results {
-          font-size: 14px;
+          font-size: 1.5rem;
           font-weight: bold;
           border: 1px solid #ddd;
           padding: 15px;
           text-align: left;
           min-height: 150px;
-          width: 65%;
+          width: 100%;
           margin: 0 auto 0 auto;
           }
           #start_button {
@@ -92,7 +95,7 @@
 
           .speech-bubble {
             position: relative;
-            background: #00aabb;
+            background: white;
             border-radius: .4em;
           }
 
@@ -104,7 +107,7 @@
             width: 0;
             height: 0;
             border: 20px solid transparent;
-            border-right-color: #00aabb;
+            border-right-color: black;
             border-left: 0;
             border-bottom: 0;
             margin-top: -10px;
@@ -209,7 +212,7 @@
       </div>
 
       <div class="container-fluid" style="display: inline-block; padding-top: 35px;">
-        <div class="container-fluid mt-3" style="width: 100%;">
+        <div class="container-fluid mt-3" style="display: none;width: 100%;">
           <p>
             <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
               Interim Transcript
@@ -224,99 +227,107 @@
         </div>
 
         <div id="copy" class="container-fluid">
-          <button class="btn btn-info" id="copy_button" onclick="copyButton()">Copy this crap</button>
-          <div class="speech-bubble2" style="padding: 15px;font-weight: bold; color: white;" id="copy_info">
-            <p>
-              Done! Hope it was worth it.
-            </p>
-          </div>
+          
+            <button class="btn btn-info" id="copy_button" onclick="copyButton()">Copy</button>
+            <div class="speech-bubble2" style="padding: 15px;font-weight: bold; color: white;" id="copy_info">
+              <p>
+                Done! Hope it was worth it.
+              </p>
+            </div>
+          
+            <button class="btn btn-success" id="email_button" onclick="emailButton()">Email</button>
+            <div class="speech-bubble2" style="padding: 15px;font-weight: bold; color: white;" id="email_info">
+              <p>
+                Done! Hope it was worth it.
+              </p>
+            </div>
+          
 
-          <button class="btn btn-success" id="email_button" onclick="emailButton()">Email this crap to someone</button>
-          <div class="speech-bubble2" style="padding: 15px;font-weight: bold; color: white;" id="email_info">
-            <p>
-              Done! Hope it was worth it.
-            </p>
-          </div>
         </div>
+
         <div class="compact marquee container-fluid" id="div_language">
-          <select id="select_language" class="btn btn-secondary" onchange="updateCountry()">
-            </select>&nbsp;&nbsp; <select class="btn btn-secondary" id="select_dialect">
-            </select>
+          <br /><br
+          <h3 class="subtitle">Language Settings</h3>
+          <select id="select_language" class="btn btn-secondary" style="display: block; margin: 15px;" onchange="updateCountry()">
+          </select>
+
+          <select class="btn btn-secondary" style="display: block; margin: 15px;"  id="select_dialect">
+          </select>
         </div>
       </div>
     </div>
 <script>
-var langs =
-[['Afrikaans',       ['af-ZA']],
- ['Bahasa Indonesia',['id-ID']],
- ['Bahasa Melayu',   ['ms-MY']],
- ['Català',          ['ca-ES']],
- ['Čeština',         ['cs-CZ']],
- ['Dansk',           ['da-DK']],
- ['Deutsch',         ['de-DE']],
- ['English',         ['en-AU', 'Australia'],
-                     ['en-CA', 'Canada'],
-                     ['en-IN', 'India'],
-                     ['en-NZ', 'New Zealand'],
-                     ['en-ZA', 'South Africa'],
-                     ['en-GB', 'United Kingdom'],
-                     ['en-US', 'United States']],
- ['Español',         ['es-AR', 'Argentina'],
-                     ['es-BO', 'Bolivia'],
-                     ['es-CL', 'Chile'],
-                     ['es-CO', 'Colombia'],
-                     ['es-CR', 'Costa Rica'],
-                     ['es-EC', 'Ecuador'],
-                     ['es-SV', 'El Salvador'],
-                     ['es-ES', 'España'],
-                     ['es-US', 'Estados Unidos'],
-                     ['es-GT', 'Guatemala'],
-                     ['es-HN', 'Honduras'],
-                     ['es-MX', 'México'],
-                     ['es-NI', 'Nicaragua'],
-                     ['es-PA', 'Panamá'],
-                     ['es-PY', 'Paraguay'],
-                     ['es-PE', 'Perú'],
-                     ['es-PR', 'Puerto Rico'],
-                     ['es-DO', 'República Dominicana'],
-                     ['es-UY', 'Uruguay'],
-                     ['es-VE', 'Venezuela']],
- ['Euskara',         ['eu-ES']],
- ['Filipino',        ['fil-PH']],
- ['Français',        ['fr-FR']],
- ['Galego',          ['gl-ES']],
- ['Hrvatski',        ['hr_HR']],
- ['IsiZulu',         ['zu-ZA']],
- ['Íslenska',        ['is-IS']],
- ['Italiano',        ['it-IT', 'Italia'],
-                     ['it-CH', 'Svizzera']],
- ['Lietuvių',        ['lt-LT']],
- ['Magyar',          ['hu-HU']],
- ['Nederlands',      ['nl-NL']],
- ['Norsk bokmål',    ['nb-NO']],
- ['Polski',          ['pl-PL']],
- ['Português',       ['pt-BR', 'Brasil'],
-                     ['pt-PT', 'Portugal']],
- ['Română',          ['ro-RO']],
- ['Slovenščina',     ['sl-SI']],
- ['Slovenčina',      ['sk-SK']],
- ['Suomi',           ['fi-FI']],
- ['Svenska',         ['sv-SE']],
- ['Tiếng Việt',      ['vi-VN']],
- ['Türkçe',          ['tr-TR']],
- ['Ελληνικά',        ['el-GR']],
- ['български',       ['bg-BG']],
- ['Pусский',         ['ru-RU']],
- ['Српски',          ['sr-RS']],
- ['Українська',      ['uk-UA']],
- ['한국어',            ['ko-KR']],
- ['中文',             ['cmn-Hans-CN', '普通话 (中国大陆)'],
-                     ['cmn-Hans-HK', '普通话 (香港)'],
-                     ['cmn-Hant-TW', '中文 (台灣)'],
-                     ['yue-Hant-HK', '粵語 (香港)']],
- ['日本語',           ['ja-JP']],
- ['हिन्दी',            ['hi-IN']],
- ['ภาษาไทย',         ['th-TH']]];
+  var langs =
+  [['Afrikaans',       ['af-ZA']],
+   ['Bahasa Indonesia',['id-ID']],
+   ['Bahasa Melayu',   ['ms-MY']],
+   ['Català',          ['ca-ES']],
+   ['Čeština',         ['cs-CZ']],
+   ['Dansk',           ['da-DK']],
+   ['Deutsch',         ['de-DE']],
+   ['English',         ['en-AU', 'Australia'],
+                       ['en-CA', 'Canada'],
+                       ['en-IN', 'India'],
+                       ['en-NZ', 'New Zealand'],
+                       ['en-ZA', 'South Africa'],
+                       ['en-GB', 'United Kingdom'],
+                       ['en-US', 'United States']],
+   ['Español',         ['es-AR', 'Argentina'],
+                       ['es-BO', 'Bolivia'],
+                       ['es-CL', 'Chile'],
+                       ['es-CO', 'Colombia'],
+                       ['es-CR', 'Costa Rica'],
+                       ['es-EC', 'Ecuador'],
+                       ['es-SV', 'El Salvador'],
+                       ['es-ES', 'España'],
+                       ['es-US', 'Estados Unidos'],
+                       ['es-GT', 'Guatemala'],
+                       ['es-HN', 'Honduras'],
+                       ['es-MX', 'México'],
+                       ['es-NI', 'Nicaragua'],
+                       ['es-PA', 'Panamá'],
+                       ['es-PY', 'Paraguay'],
+                       ['es-PE', 'Perú'],
+                       ['es-PR', 'Puerto Rico'],
+                       ['es-DO', 'República Dominicana'],
+                       ['es-UY', 'Uruguay'],
+                       ['es-VE', 'Venezuela']],
+   ['Euskara',         ['eu-ES']],
+   ['Filipino',        ['fil-PH']],
+   ['Français',        ['fr-FR']],
+   ['Galego',          ['gl-ES']],
+   ['Hrvatski',        ['hr_HR']],
+   ['IsiZulu',         ['zu-ZA']],
+   ['Íslenska',        ['is-IS']],
+   ['Italiano',        ['it-IT', 'Italia'],
+                       ['it-CH', 'Svizzera']],
+   ['Lietuvių',        ['lt-LT']],
+   ['Magyar',          ['hu-HU']],
+   ['Nederlands',      ['nl-NL']],
+   ['Norsk bokmål',    ['nb-NO']],
+   ['Polski',          ['pl-PL']],
+   ['Português',       ['pt-BR', 'Brasil'],
+                       ['pt-PT', 'Portugal']],
+   ['Română',          ['ro-RO']],
+   ['Slovenščina',     ['sl-SI']],
+   ['Slovenčina',      ['sk-SK']],
+   ['Suomi',           ['fi-FI']],
+   ['Svenska',         ['sv-SE']],
+   ['Tiếng Việt',      ['vi-VN']],
+   ['Türkçe',          ['tr-TR']],
+   ['Ελληνικά',        ['el-GR']],
+   ['български',       ['bg-BG']],
+   ['Pусский',         ['ru-RU']],
+   ['Српски',          ['sr-RS']],
+   ['Українська',      ['uk-UA']],
+   ['한국어',            ['ko-KR']],
+   ['中文',             ['cmn-Hans-CN', '普通话 (中国大陆)'],
+                       ['cmn-Hans-HK', '普通话 (香港)'],
+                       ['cmn-Hant-TW', '中文 (台灣)'],
+                       ['yue-Hant-HK', '粵語 (香港)']],
+   ['日本語',           ['ja-JP']],
+   ['हिन्दी',            ['hi-IN']],
+   ['ภาษาไทย',         ['th-TH']]];
 
 for (var i = 0; i < langs.length; i++) {
   select_language.options[i] = new Option(langs[i][0], i);
@@ -413,6 +424,12 @@ if (!('webkitSpeechRecognition' in window)) {
 
   var random = [0];
 
+  setTimeout(function(){
+    interim_span.innerHTML = 'Testing 1 2 3 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
+    chunk(state); 
+  }, 1500);
+
+
   function chunk(state) {
     var text = interim_span.innerHTML;
     text = text.split(" ");
@@ -433,6 +450,7 @@ if (!('webkitSpeechRecognition' in window)) {
         }
       }
     }
+    text.reverse();
     text = text.join(" ");
     if ( state = 'final') {
       final_span.innerHTML = text;
